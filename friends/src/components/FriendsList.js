@@ -12,7 +12,7 @@ class FriendsList extends Component {
   render() {
     return (
       <div>
-      {this.props.friends[0]}
+      {!this.props.fetchingData && this.props.friends.length > 0  && this.props.friends[0].name}
       </div>
     );
   }
