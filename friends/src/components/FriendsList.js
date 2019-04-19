@@ -12,7 +12,10 @@ class FriendsList extends Component {
   render() {
     return (
       <div>
-      {!this.props.fetchingData && this.props.friends.length > 0  && this.props.friends[0].name}
+      {!this.props.fetchingData && this.props.friends.length > 0  && (
+        
+        <ul>{this.props.friends.map(friend => <li key={friend.id}>{friend.name}</li>)}</ul>
+        )}
       </div>
     );
   }

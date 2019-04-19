@@ -29,7 +29,7 @@ class Login extends React.Component {
   render() {
     return (
       <div>
-        {this.props.loginError && <p>Error on login, try again</p>}
+        {/* {this.props.loginError && <p>Error on login, try again</p>} */}
         <form onSubmit={this.handleLogin}>
           <input
             type="text"
