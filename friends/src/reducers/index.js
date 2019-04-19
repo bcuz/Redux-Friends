@@ -1,5 +1,5 @@
 const defaults = {
-  friends: ['bob']
+  friends: []
 }
 
 const rootReducer = (state = defaults, action) => {
