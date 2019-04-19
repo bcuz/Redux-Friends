@@ -1,12 +1,33 @@
-import { FETCH_DATA_SUCCESS, ADD_FRIEND_SUCCESS, FETCH_DATA_START } from "../actions";
+import { 
+  LOGIN_START,
+   LOGIN_FAILURE,
+   FETCH_DATA_SUCCESS,
+   FETCH_DATA_START,
+   ADD_FRIEND_SUCCESS } from "../actions";
 
 const defaults = {
   friends: [],
   fetchingData: false,
+  loginError: null,
+  loggingIn: false,
 }
 
 const rootReducer = (state = defaults, action) => {
   switch (action.type) {
+    case LOGIN_START: {
+      return {
+        ...state,
+        loginError: null,
+        loggingIn: true
+      };
+    }
+    case LOGIN_FAILURE: {
+      return {
+        ...state,
+        loginError: "failed login",
+        loggingIn: false,
+      };
+    }
     case FETCH_DATA_START:
       return {
         ...state,
