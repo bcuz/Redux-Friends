@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import {getFriends, addFriend} from "../actions";
+import {getFriends, addFriend, deleteFriend} from "../actions";
 
 class FriendsList extends Component {
   state = {
@@ -25,6 +25,10 @@ class FriendsList extends Component {
     });
   }
 
+  deleteFriend = id => {
+    this.props.deleteFriend(id)
+  }
+
   render() {
     return (
       <div>
@@ -32,7 +36,7 @@ class FriendsList extends Component {
       {/* maybe could be shorter idk */}
       {!this.props.fetchingData && this.props.friends.length > 0  && (
         
-        <ul>{this.props.friends.map(friend => <li key={friend.id}>{friend.name}</li>)}</ul>
+        <ul>{this.props.friends.map(friend => <li key={friend.id}><button onClick={() => this.deleteFriend(friend.id)}>X</button>{friend.name}</li>)}</ul>
         )}
 
         <h2>add new friend</h2>
@@ -49,4 +53,4 @@ const mapStateToProps = state => {
   return { friends: state.friends, fetchingData: state.fetchingData}
 }
 
-export default connect(mapStateToProps, {getFriends, addFriend})(FriendsList);
+export default connect(mapStateToProps, {getFriends, addFriend, deleteFriend})(FriendsList);

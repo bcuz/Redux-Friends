@@ -3,7 +3,7 @@ import {
    LOGIN_FAILURE,
    FETCH_DATA_SUCCESS,
    FETCH_DATA_START,
-   ADD_FRIEND_SUCCESS } from "../actions";
+   ADD_FRIEND_SUCCESS, DELETE_FRIEND_SUCCESS } from "../actions";
 
 const defaults = {
   friends: [],
@@ -43,6 +43,13 @@ const rootReducer = (state = defaults, action) => {
         friends: action.friends
       };
     case ADD_FRIEND_SUCCESS:
+      // console.log(action.payload);
+      return {
+        ...state,
+        // error: "",
+        friends: action.friends
+      };
+    case DELETE_FRIEND_SUCCESS:
       // console.log(action.payload);
       return {
         ...state,
