@@ -1,4 +1,4 @@
-import { FETCH_DATA_SUCCESS } from "../actions";
+import { FETCH_DATA_SUCCESS, ADD_FRIEND_SUCCESS } from "../actions";
 
 const defaults = {
   friends: []
@@ -15,6 +15,14 @@ const rootReducer = (state = defaults, action) => {
         ...state,
         // error: "",
         fetchingData: false,
+        friends: action.friends
+      };
+    case ADD_FRIEND_SUCCESS:
+      // console.log(action.payload);
+      return {
+        ...state,
+        // error: "",
+        // fetchingData: false,
         friends: action.friends
       };
     default:

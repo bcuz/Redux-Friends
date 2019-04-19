@@ -38,3 +38,17 @@ export const getFriends = () => dispatch => {
       dispatch(getFriendsSuccess(res.data))
     })
   }
+
+export const ADD_FRIEND_SUCCESS = "ADD_FRIEND_SUCCESS";
+
+export const addFriend = newFriend => dispatch => {
+  axios
+  .post("http://localhost:5000/api/friends", newFriend, {
+      headers: { Authorization: localStorage.getItem("token") }
+    })
+    .then(res => {
+      // console.log(res);
+      
+      dispatch({type: ADD_FRIEND_SUCCESS, friends: res.data})
+    })
+}
