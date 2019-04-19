@@ -28,6 +28,8 @@ class FriendsList extends Component {
   render() {
     return (
       <div>
+      {this.props.fetchingData && <p>Loading...</p>}
+      {/* maybe could be shorter idk */}
       {!this.props.fetchingData && this.props.friends.length > 0  && (
         
         <ul>{this.props.friends.map(friend => <li key={friend.id}>{friend.name}</li>)}</ul>
@@ -44,9 +46,7 @@ class FriendsList extends Component {
 }
 
 const mapStateToProps = state => {
-  return { friends: state.friends}
+  return { friends: state.friends, fetchingData: state.fetchingData}
 }
 
-const componentConnecter = connect(mapStateToProps, {getFriends, addFriend})
-
-export default componentConnecter(FriendsList);
+export default connect(mapStateToProps, {getFriends, addFriend})(FriendsList);

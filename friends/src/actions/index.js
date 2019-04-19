@@ -20,6 +20,7 @@ export const login = creds => dispatch => {
     });
 };
 
+export const FETCH_DATA_START = "FETCH_DATA_START";
 export const FETCH_DATA_SUCCESS = "FETCH_DATA_SUCCESS";
 
 export const getFriendsSuccess = apiData => {
@@ -27,19 +28,23 @@ export const getFriendsSuccess = apiData => {
 }
 
 export const getFriends = () => dispatch => {
-  // dispatch({ type: FETCHING });
+  dispatch({ type: FETCH_DATA_START });
   axios
   .get("http://localhost:5000/api/friends", {
       headers: { Authorization: localStorage.getItem("token") }
     })
     .then(res => {
-      console.log(res);
+      // console.log(res);
       
       dispatch(getFriendsSuccess(res.data))
     })
   }
 
 export const ADD_FRIEND_SUCCESS = "ADD_FRIEND_SUCCESS";
+
+export const addFriendsSuccess = apiData => {
+  return {type: ADD_FRIEND_SUCCESS, friends: apiData}
+}
 
 export const addFriend = newFriend => dispatch => {
   axios
@@ -49,6 +54,6 @@ export const addFriend = newFriend => dispatch => {
     .then(res => {
       // console.log(res);
       
-      dispatch({type: ADD_FRIEND_SUCCESS, friends: res.data})
+      dispatch(addFriendsSuccess(res.data))
     })
 }
